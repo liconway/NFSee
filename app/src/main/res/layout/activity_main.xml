@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:background="#ffffff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +11,8 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <Button
         android:id="@+id/favorite"
@@ -40,6 +43,7 @@
         android:layout_marginTop="433dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
+        android:textColor="#888888"
 
         android:fontFamily="@font/coolvetica"
         android:gravity="center"
@@ -75,5 +79,6 @@
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
+
 
 </RelativeLayout>

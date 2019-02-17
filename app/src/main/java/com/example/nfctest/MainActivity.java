@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
             String tagContent = getTextFromNdefRecord(ndefRecord);
 
-            txtTagContent.setText(tagContent);
+            //txtTagContent.setText(tagContent);
 
             String json = getRequest(tagContent);
         }
@@ -106,14 +106,16 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
-                        txtTagContent.setText(response.toString());
+                        System.out.println("-----------------------------------------");
+//                        txtTagContent.setText(response.toString());
+                        System.out.println(response.toString());
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                txtTagContent.setText("nono bad");
+//                txtTagContent.setText("nono bad");
+                System.err.println("nono bad");
             }
         });
 
