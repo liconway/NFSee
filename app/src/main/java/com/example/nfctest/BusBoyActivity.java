@@ -82,9 +82,9 @@ public class BusBoyActivity extends AppCompatActivity {
                 break;
             case 3:
                 nameText = findViewById(R.id.r3c0);
-                t1 = findViewById(R.id.r0c1);
-                t2 = findViewById(R.id.r0c2);
-                t3 = findViewById(R.id.r0c3);
+                t1 = findViewById(R.id.r3c1);
+                t2 = findViewById(R.id.r3c2);
+                t3 = findViewById(R.id.r3c3);
                 break;
         }
         nameText.setText(busName);
