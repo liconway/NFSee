@@ -1,6 +1,8 @@
 package com.example.nfctest;
 
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
+import android.content.IntentFilter;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Build;
@@ -20,11 +22,13 @@ import java.io.UnsupportedEncodingException;
 
 import static android.nfc.NdefRecord.createTextRecord;
 
+
 public class MainActivity extends AppCompatActivity {
 
     NfcAdapter nfcAdapter;
     ToggleButton tglReadWrite;
     EditText txtTagContent;
+    private boolean testNFCRead = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         tglReadWrite = findViewById(R.id.tglReadWrite);
         txtTagContent = (EditText) findViewById(R.id.txtTagContent);
+
+        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
+        if(nfcAdapter!=null && nfcAdapter.isEnabled()){
+            Toast.makeText(this, "NFC available!", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this, "NFC not available", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -42,11 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(intent.hasExtra(NfcAdapter.EXTRA_TAG)){
             Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
-
             if(tglReadWrite.isChecked()){
                 Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 
                 if(parcelables != null && parcelables.length > 0){
+
                     readTextFromMessage((NdefMessage) parcelables[0]);
                 }
                 else{
@@ -88,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tglReadWriteOnClick(View view){
-        txtTagContent.setText("");
+        txtTagContent.setText("Hello");
     }
 
     public String getTextFromNdefRecord(NdefRecord ndefRecord)
@@ -104,5 +117,34 @@ public class MainActivity extends AppCompatActivity {
             Log.e("getTextFromNdefRecord", e.getMessage(), e);
         }
         return tagContent;
+    }
+
+    private void enableForegroundDispatchSystem(){
+
+        Intent intent = new Intent(this, MainActivity.class).addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        IntentFilter[] intentFilters = new IntentFilter[] {};
+
+        nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        disableForegroundDispatchSystem();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        enableForegroundDispatchSystem();
+    }
+
+    private void disableForegroundDispatchSystem(){
+        nfcAdapter.disableForegroundDispatch(this);
     }
 }
