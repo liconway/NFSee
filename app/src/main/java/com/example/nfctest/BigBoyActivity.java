@@ -1,10 +1,13 @@
 package com.example.nfctest;
 
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -30,18 +33,20 @@ public class BigBoyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_big_boy);
 
         viewPager = findViewById(R.id.viewPager_id);
-
         System.out.println("Big Boy is Running!!");
-
         json = getJSON();
 
-        ImageButton taButton = findViewById(R.id.tripAdvisor);
-        ImageButton yelpButton = findViewById(R.id.yelp);
+        configureButtons();
+    }
 
-        taButton.setOnClickListener(new View.OnClickListener(){
+    private void configureButtons(){
+        ImageButton facebookButton = findViewById(R.id.faceBook);
+        ImageButton twitterButton = findViewById(R.id.twitter);
+        ImageButton yelpButton = findViewById(R.id.yelp);
+        twitterButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("taurl")));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("twurl")));
                 startActivity(browserIntent);
             }
         });
@@ -50,6 +55,14 @@ public class BigBoyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("yurl")));
+                startActivity(browserIntent);
+            }
+        });
+
+        facebookButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("fburl")));
                 startActivity(browserIntent);
             }
         });
@@ -168,6 +181,36 @@ public class BigBoyActivity extends AppCompatActivity {
         });
 
         builder.show();
+    }
+
+
+    // prevents NFC from working on this activity
+
+    private void enableForegroundDispatchSystem(){
+
+        Intent intent = new Intent(this, BigBoyActivity.class).addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        IntentFilter[] intentFilters = new IntentFilter[] {};
+
+        Utils.nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        disableForegroundDispatchSystem();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        enableForegroundDispatchSystem();
+    }
+
+    private void disableForegroundDispatchSystem(){
+        Utils.nfcAdapter.disableForegroundDispatch(this);
     }
 
 }
