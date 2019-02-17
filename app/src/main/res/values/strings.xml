@@ -9,4 +9,5 @@
     <string name="phone">phone</string>
     <string name="url">url</string>
     <string name="company_title">Company_Title</string>
+    <string name="description">Description</string>
 </resources>
