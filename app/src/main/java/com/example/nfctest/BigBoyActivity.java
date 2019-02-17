@@ -1,10 +1,13 @@
 package com.example.nfctest;
 
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -178,6 +181,36 @@ public class BigBoyActivity extends AppCompatActivity {
         });
 
         builder.show();
+    }
+
+
+    // prevents NFC from working on this activity
+
+    private void enableForegroundDispatchSystem(){
+
+        Intent intent = new Intent(this, BigBoyActivity.class).addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        IntentFilter[] intentFilters = new IntentFilter[] {};
+
+        Utils.nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        disableForegroundDispatchSystem();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        enableForegroundDispatchSystem();
+    }
+
+    private void disableForegroundDispatchSystem(){
+        Utils.nfcAdapter.disableForegroundDispatch(this);
     }
 
 }
