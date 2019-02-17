@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
             Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if(parcelables != null && parcelables.length > 0){
                 TextView loading = findViewById(R.id.funtext);
-                loading.setText("Loading...");
+                String s = "loading...";
+                loading.setText(s);
                 readTextFromMessage((NdefMessage) parcelables[0]);
             }
             else{
@@ -86,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(result);
                     char type = result.charAt(16);
 
+                    TextView loading = findViewById(R.id.funtext);
+                    String sr = "Ready to scan, boss";
+                    loading.setText(sr);
                     switch(type) {
                         case '0':
                             openBoy(BigBoyActivity.class, result);
