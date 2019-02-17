@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BigBoyActivity.class);
         intent.putExtra("JSON_STRING", json);
         startActivity(intent);
+        TextView loading = findViewById(R.id.funtext);
+        loading.setText("Ready to scan, boss");
     }
 
     @Override
@@ -85,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
             Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if(parcelables != null && parcelables.length > 0){
+                TextView loading = findViewById(R.id.funtext);
+                loading.setText("Loading...");
                 readTextFromMessage((NdefMessage) parcelables[0]);
             }
             else{
