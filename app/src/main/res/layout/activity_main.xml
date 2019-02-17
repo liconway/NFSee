@@ -14,24 +14,6 @@
     tools:context=".MainActivity"
     >
 
-    <Button
-        android:id="@+id/favorite"
-        android:layout_width="395dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="570dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-
-        android:background="#8d02b3"
-
-        android:fontFamily="@font/coolvetica"
-        android:text="Favourites"
-        android:textColor="#ffffff"
-        android:textSize="50dp" />
-
     <TextView
         android:id="@+id/funtext"
         android:layout_width="395dp"
@@ -39,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="433dp"
+        android:layout_marginTop="520dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         android:textColor="#888888"
@@ -59,7 +41,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         android:fontFamily="@font/coolvetica"
@@ -75,7 +57,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="119dp"
+        android:layout_marginTop="190dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         app:srcCompat="@mipmap/ic_launcher_foreground_icon" />

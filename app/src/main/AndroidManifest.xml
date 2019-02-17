@@ -24,11 +24,6 @@
             android:theme="@style/NoActionBar"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".FavoriteActivity"
-            android:label="     Favorites"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".BigBoyActivity"
             android:label="@string/title_activity_big_boy"
             android:theme="@style/NoActionBar"

@@ -58,17 +58,6 @@ public class MainActivity extends AppCompatActivity {
         else{
             Toast.makeText(this, "NFC not available", Toast.LENGTH_LONG).show();
         }
-        configureButton();
-    }
-
-    private void configureButton(){
-        Button backButton = findViewById(R.id.favorite);
-        backButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                startActivity(new Intent(MainActivity.this, FavoriteActivity.class));
-            }
-        });
     }
 
     public void openBigBoy(String json) {
@@ -84,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         super.onNewIntent(intent);
 
         if(intent.hasExtra(NfcAdapter.EXTRA_TAG)){
-            Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Scanned", Toast.LENGTH_SHORT).show();
             Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if(parcelables != null && parcelables.length > 0){
                 TextView loading = findViewById(R.id.funtext);
