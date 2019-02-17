@@ -26,7 +26,8 @@ public class AlertActivity extends AppCompatActivity {
             TextView alertTitle = findViewById(R.id.alertTitle);
             TextView alertDate = findViewById(R.id.alertDate);
             alertTitle.setText(json.optString("title"));
-            alertDate.setText(json.optString("start"));
+            java.util.Date time=new java.util.Date((long)Integer.parseInt(json.optString("start"))*1000);
+            alertDate.setText(time);
             description.setText(json.optString("description"));
 
         } catch (JSONException e) {
