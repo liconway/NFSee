@@ -44,7 +44,7 @@ app.get('/data', (req, res) => {
 
             var info = result[0];
             delete info['_id'];
-            info.alerts = {};
+            info.alerts = [];
 
             dbo.collection('alerts').find({}).toArray((err, nresult) => {
                 for(var i = 0; i < nresult.length; i++) {
@@ -52,8 +52,7 @@ app.get('/data', (req, res) => {
                     if(info.latitude > (r.latitude - r.radius) && info.latitude < (r.latitude + r.radius)
                     && info.longitude > (r.longitude - r.radius) && info.longitude < (r.longitude + r.radius)) {
                         delete r['_id'];
-                        info.alerts[r.uuid] = r;
-                        delete info.alerts[r.uuid].uuid;
+                        info.alerts.push(r);
 
                         res.status(200).json(info);
                         db.close();
