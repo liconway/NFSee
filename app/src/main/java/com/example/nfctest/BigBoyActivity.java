@@ -3,6 +3,7 @@ package com.example.nfctest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,13 +14,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class BigBoyActivity extends AppCompatActivity {
+    ViewPager viewPager;
+    SlideAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_big_boy);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        viewPager = findViewById(R.id.viewPager_id);
 
         System.out.println("Big Boy is Running!!");
 
@@ -66,6 +69,20 @@ public class BigBoyActivity extends AppCompatActivity {
 
         field = (TextView) findViewById(R.id.description);
         field.setText(data.optString("description"));
+
+        JSONArray photos = data.optJSONArray("photos");
+        //int[] images = new int[] { R.drawable.test, R.drawable.test2 };
+        int[] images = new int[photos.length()];
+        String[] captions = new String[photos.length()];
+
+        for(int i = 0; i < photos.length(); i++) {
+            // TODO: Insert proper photo
+            images[i] = R.drawable.test;
+            captions[i] = photos.optJSONObject(i).optString("caption");
+        }
+
+        adapter = new SlideAdapter(this, images, captions);
+        viewPager.setAdapter(adapter);
     }
 
     private JSONObject getAlerts(JSONArray alerts) {
