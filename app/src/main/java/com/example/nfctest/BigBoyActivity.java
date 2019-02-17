@@ -43,6 +43,8 @@ public class BigBoyActivity extends AppCompatActivity {
         ImageButton facebookButton = findViewById(R.id.faceBook);
         ImageButton twitterButton = findViewById(R.id.twitter);
         ImageButton yelpButton = findViewById(R.id.yelp);
+        Button jobButton = findViewById(R.id.jobListing);
+
         twitterButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -66,6 +68,15 @@ public class BigBoyActivity extends AppCompatActivity {
                 startActivity(browserIntent);
             }
         });
+
+        jobButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("inurl")));
+                startActivity(browserIntent);
+            }
+        });
+
 
     }
 
