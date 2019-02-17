@@ -33,14 +33,16 @@ public class BigBoyActivity extends AppCompatActivity {
 
             displayData(json);
 
-            JSONArray alertIDs = json.optJSONArray("alerts");
 
-            if (alertIDs != null) {
-                JSONObject[] alerts = getAlerts(alertIDs);
-                for (JSONObject a : alerts) notifyAlert(a);
+            JSONArray alerts = json.optJSONArray("alerts");
+
+            if (alerts != null) {
+                JSONObject alert = getAlerts(alerts);
+                notifyAlert(alert);
             } else {
                 System.out.println("no alerts");
             }
+
         } catch (JSONException e) {
             json = null;
             e.printStackTrace();
@@ -50,34 +52,43 @@ public class BigBoyActivity extends AppCompatActivity {
 
     private void displayData(JSONObject data) {
         TextView field = (TextView) findViewById(R.id.company_title);
-        field.setText(R.string.company_title);
+        //field.setText(R.string.company_title);
+        field.setText(data.optString("title"));
 
         field = (TextView) findViewById(R.id.address);
-        field.setText(R.string.address);
+        field.setText(data.optString("address"));
 
         field = (TextView) findViewById(R.id.phone);
-        field.setText(R.string.phone);
+        field.setText(data.optString("phone"));
 
         field = (TextView) findViewById(R.id.url);
-        field.setText(R.string.url);
+        field.setText(data.optString("url"));
+
+        field = (TextView) findViewById(R.id.description);
+        field.setText(data.optString("description"));
     }
 
-    private JSONObject[] getAlerts(JSONArray ids) {
-        JSONObject[] arr = new JSONObject[ids.length()];
-        for (int i=0; i < arr.length; i++) {
-            ids.optString(i);
-        }
-        return arr;
+    private JSONObject getAlerts(JSONArray alerts) {
+//        JSONObject object;
+//        for (int i=0; i < alerts.length(); i++) {
+//            object = alerts.optJSONObject(i);
+//            alerts.optString(i);
+//        }
+//        return arr;
+        JSONObject object = alerts.optJSONObject(0);
+        return object;
     }
 
 
 
-    private void notifyAlert(final JSONObject jsonObject){
+    private void notifyAlert(final JSONObject jsonObject) {
         AlertDialog.Builder builder = new AlertDialog.Builder(BigBoyActivity.this);
+
+        System.out.println("-------------------------notifyAlert");
 
         builder.setCancelable(true);
         builder.setTitle("Alert Notification");
-        builder.setMessage(jsonObject.optString("headline"));
+        builder.setMessage(jsonObject.optString("title"));
 
         builder.setNegativeButton("Ignore", new DialogInterface.OnClickListener() {
             @Override
