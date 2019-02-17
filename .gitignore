@@ -1,5 +1,6 @@
 *.iml
 
+/Server/secure.json
 /local.properties
 /.idea/caches
 /.idea/libraries
