@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
         configureButton();
     }
 
-    public void configureButton(){
-        Button favorite = findViewById(R.id.favorite);
-        favorite.setOnClickListener(new View.OnClickListener(){
+    private void configureButton(){
+        Button backButton = findViewById(R.id.favorite);
+        backButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(MainActivity.this, Favorites.class));
+                startActivity(new Intent(MainActivity.this, FavoriteActivity.class));
             }
         });
     }
