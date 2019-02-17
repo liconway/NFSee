@@ -10,6 +10,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,16 +34,26 @@ public class BigBoyActivity extends AppCompatActivity {
         System.out.println("Big Boy is Running!!");
 
         json = getJSON();
-    }
 
-    private void openTripAdvisor(View view){
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("taurl")));
-        startActivity(browserIntent);
-    }
+        ImageButton taButton = findViewById(R.id.tripAdvisor);
+        ImageButton yelpButton = findViewById(R.id.yelp);
 
-    private void openYelp(View view){
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("yurl")));
-        startActivity(browserIntent);
+        taButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("taurl")));
+                startActivity(browserIntent);
+            }
+        });
+
+        yelpButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("yurl")));
+                startActivity(browserIntent);
+            }
+        });
+
     }
 
     private Bitmap[] getBitmaps(String[] urls) {
