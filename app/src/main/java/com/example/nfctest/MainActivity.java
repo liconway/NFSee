@@ -18,6 +18,7 @@ import android.widget.ToggleButton;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.nfc.NdefMessage;
+import static android.nfc.NdefRecord.createTextRecord;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,12 +26,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 
-import static android.nfc.NdefRecord.createTextRecord;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton tglReadWrite;
     EditText txtTagContent;
     private boolean testNFCRead = true;
+    JSONObject data;
 
     private final String url = "http://10.13.106.210:8192/data?uuid=";
 
@@ -60,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** Called when the user taps the Send button */
+    public void openDisplay(View view, JSONObject json) {
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        intent.putExtra("JSON_STRING", json.toString());
+        startActivity(intent);
+    }
+
     @Override
     protected void onNewIntent(Intent intent){
         super.onNewIntent(intent);
@@ -76,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public synchronized void setJSON(JSONObject j) {
+        this.data = j;
+    }
+
+
     private void readTextFromMessage(NdefMessage ndefMessage){
         NdefRecord[] ndefRecords = ndefMessage.getRecords();
 
@@ -83,17 +94,23 @@ public class MainActivity extends AppCompatActivity {
             NdefRecord ndefRecord = ndefRecords[0];
 
             String tagContent = getTextFromNdefRecord(ndefRecord);
+            String json;
 
-            //txtTagContent.setText(tagContent);
+            getRequest(tagContent, new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    System.out.println(result);
+                    openDisplay(view, result);
 
-            String json = getRequest(tagContent);
+                }
+            });
         }
         else{
             Toast.makeText(this, "No NDEF Records Found!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private String getRequest(String uuid) {
+    private void getRequest(String uuid, final VolleyCallback callback) {
 
         final TextView mTextView = (TextView) findViewById(R.id.text);
 
@@ -107,22 +124,19 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         System.out.println("-----------------------------------------");
-//                        txtTagContent.setText(response.toString());
                         System.out.println(response.toString());
+                        callback.onSuccess(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-//                txtTagContent.setText("nono bad");
                 System.err.println("nono bad");
             }
         });
 
         // Add the request to the RequestQueue.
         queue.add(jsonRequest);
-
-        return null;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
