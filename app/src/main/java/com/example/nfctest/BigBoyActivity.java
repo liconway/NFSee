@@ -132,9 +132,8 @@ public class BigBoyActivity extends AppCompatActivity {
         field.setText(data.optString("description"));
 
         JSONArray photos = data.optJSONArray("photos");
-        //int[] images = new int[] { R.drawable.test, R.drawable.test2 };
         String[] urls = new String[photos.length()];
-        Bitmap[] images = new Bitmap[photos.length()];
+        Bitmap[] images;
         String[] captions = new String[photos.length()];
 
 

@@ -79,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
             Utils.getRequest(tagContent, new VolleyCallback() {
                 @Override
                 public void onSuccess(String result) {
+                    switch(result) {
+
+                    }
                     System.out.println(result);
                     openBigBoy(result);
 
