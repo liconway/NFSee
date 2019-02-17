@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">nfcTest</string>
     <string name="title_activity_favorites">Favorites</string>
+    <string name="title_activity_test">Test</string>
+    <string name="title_activity_big_boy">BigBoyActivity</string>
+    <string name="title_activity_favorite">FavoriteActivity</string>
+    <string name="title_activity_alert">AlertActivity</string>
+    <string name="address">address</string>
+    <string name="phone">phone</string>
+    <string name="url">url</string>
+    <string name="company_title">Company_Title</string>
+    <string name="description">Description</string>
 </resources>

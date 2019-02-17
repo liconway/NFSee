@@ -1,6 +1,7 @@
 package com.example.nfctest;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.IntentFilter;
 import android.nfc.NdefRecord;
@@ -11,26 +12,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.nfc.NdefMessage;
+import static android.nfc.NdefRecord.createTextRecord;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 
-import static android.nfc.NdefRecord.createTextRecord;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton tglReadWrite;
     EditText txtTagContent;
     private boolean testNFCRead = true;
+    JSONObject data;
 
-    private final String url = "http://10.13.106.210:8192/data?uuid=";
+    private static final String url = "http://10.13.106.210:8192/data?uuid=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,25 @@ public class MainActivity extends AppCompatActivity {
         else{
             Toast.makeText(this, "NFC not available", Toast.LENGTH_LONG).show();
         }
+        configureButton();
+    }
+
+    private void configureButton(){
+        Button backButton = findViewById(R.id.favorite);
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                startActivity(new Intent(MainActivity.this, FavoriteActivity.class));
+            }
+        });
+    }
+
+    public void openBigBoy(String json) {
+        Intent intent = new Intent(this, BigBoyActivity.class);
+        intent.putExtra("JSON_STRING", json);
+        startActivity(intent);
+        TextView loading = findViewById(R.id.funtext);
+        loading.setText("Ready to scan, boss");
     }
 
     @Override
@@ -68,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
             Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if(parcelables != null && parcelables.length > 0){
+                TextView loading = findViewById(R.id.funtext);
+                loading.setText("Loading...");
                 readTextFromMessage((NdefMessage) parcelables[0]);
             }
             else{
@@ -75,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public synchronized void setJSON(JSONObject j) {
+        this.data = j;
+    }
+
 
     private void readTextFromMessage(NdefMessage ndefMessage){
         NdefRecord[] ndefRecords = ndefMessage.getRecords();
@@ -84,45 +111,43 @@ public class MainActivity extends AppCompatActivity {
 
             String tagContent = getTextFromNdefRecord(ndefRecord);
 
-            //txtTagContent.setText(tagContent);
+            getRequest(tagContent, new VolleyCallback() {
+                @Override
+                public void onSuccess(String result) {
+                    System.out.println(result);
+                    openBigBoy(result);
 
-            String json = getRequest(tagContent);
+                }
+            }, this);
         }
         else{
             Toast.makeText(this, "No NDEF Records Found!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private String getRequest(String uuid) {
-
-        final TextView mTextView = (TextView) findViewById(R.id.text);
-
+    public static void getRequest(String uuid, final VolleyCallback callback, Activity activity) {
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(activity);
 
         // Request a string response from the provided URL.
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url+uuid, null,
-                new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url+uuid,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        System.out.println("-----------------------------------------");
-//                        txtTagContent.setText(response.toString());
-                        System.out.println(response.toString());
+                    public void onResponse(String response) {
+                        System.out.println("http request works");
+                        callback.onSuccess(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-//                txtTagContent.setText("nono bad");
                 System.err.println("nono bad");
             }
         });
 
         // Add the request to the RequestQueue.
-        queue.add(jsonRequest);
-
-        return null;
+        queue.add(stringRequest);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
