@@ -23,7 +23,7 @@ import java.io.UnsupportedEncodingException;
 public class MainActivity extends AppCompatActivity {
     JSONObject data;
 
-    private static final String url = "http://10.13.106.210:8192/data?uuid=";
+    private static final String url = "http://10.13.104.197:8192/data?uuid=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +45,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     @Override
-    protected void onNewIntent
-
-
-            (Intent intent){
+    protected void onNewIntent(Intent intent){
         super.onNewIntent(intent);
 
         if(intent.hasExtra(NfcAdapter.EXTRA_TAG)){
-            Toast.makeText(this, "Scanned", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Scanning", Toast.LENGTH_SHORT).show();
             Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if(parcelables != null && parcelables.length > 0){
                 TextView loading = findViewById(R.id.funtext);
-                String s = "loading...";
+                String s = "Loading...";
                 loading.setText(s);
                 readTextFromMessage((NdefMessage) parcelables[0]);
             }
@@ -90,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(result);
                     char type = result.charAt(16);
 
-                    TextView loading = findViewById(R.id.funtext);
-                    String sr = "Ready to scan, boss";
-                    loading.setText(sr);
+//                    TextView loading = findViewById(R.id.funtext);
+//                    String sr = "Ready to scan, boss";
+//                    loading.setText(sr);
                     switch(type) {
                         case '0':
                             openBoy(BigBoyActivity.class, result);
@@ -146,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        TextView loading = findViewById(R.id.funtext);
+        String s = "Loading...";
+        loading.setText(s);
 
         disableForegroundDispatchSystem();
     }

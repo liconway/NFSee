@@ -1,11 +1,13 @@
 package com.example.nfctest;
 
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -24,7 +26,32 @@ public class BusBoyActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        System.out.println("------------Bus Boy!");
+
         json = getJSON();
+
+        final Button share = findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                String message = json.optString("title") + "\n"
+                        + json.optString("address") + "\n";
+                JSONArray vehicles = json.optJSONArray("vehicles");
+                if (vehicles != null && vehicles.length() > 0)
+                    for (int i=0; i<vehicles.length(); i++) {
+                        JSONObject bus = vehicles.optJSONObject(i);
+                        if (bus != null) message += bus.optString("name") + ":\n\n"
+                                + bus.optString("number1") + ", "
+                                + bus.optString("number2") + ", "
+                                + bus.optString("number3") + "\n\n";
+                    }
+
+                sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, "Share this location"));
+            }
+        });
     }
 
     private JSONObject getJSON() {
@@ -34,7 +61,7 @@ public class BusBoyActivity extends AppCompatActivity {
             System.out.println(json.toString());
 
             JSONArray buses = json.optJSONArray("vehicles");
-            if (buses.length() > 0) {
+            if (buses != null && buses.length() > 0) {
                 for(int i = 0; i < 4; i++){
                     JSONObject bus = buses.getJSONObject(i);
                     writeBusTimes(bus, i);
@@ -91,6 +118,35 @@ public class BusBoyActivity extends AppCompatActivity {
         t1.setText(time1);
         t2.setText(time2);
         t3.setText(time3);
+    }
+
+    // prevents NFC from working on this activity
+
+    private void enableForegroundDispatchSystem(){
+
+        Intent intent = new Intent(this, BusBoyActivity.class).addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        IntentFilter[] intentFilters = new IntentFilter[] {};
+
+        Utils.nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        disableForegroundDispatchSystem();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        enableForegroundDispatchSystem();
+    }
+
+    private void disableForegroundDispatchSystem(){
+        Utils.nfcAdapter.disableForegroundDispatch(this);
     }
 
 }

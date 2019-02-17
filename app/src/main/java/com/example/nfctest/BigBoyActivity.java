@@ -38,6 +38,18 @@ public class BigBoyActivity extends AppCompatActivity {
         json = getJSON();
 
         configureButtons();
+        final Button share = findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                String message = json.optString("title") + "\n" + json.optString("address");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, "Share this location"));
+            }
+        });
+
     }
 
     private void configureButtons(){

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.nfc.NfcAdapter;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,7 +18,7 @@ import java.net.URL;
 public class Utils {
     public static NfcAdapter nfcAdapter;
 
-    public static void getRequest(String uuid, final VolleyCallback callback, Activity activity, String url) {
+    public static void getRequest(String uuid, final VolleyCallback callback, final Activity activity, String url) {
 
 
 
@@ -37,6 +38,7 @@ public class Utils {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 System.err.println("nono bad");
+                Toast.makeText(activity, "Connection failed", Toast.LENGTH_LONG).show();
             }
         });
 
