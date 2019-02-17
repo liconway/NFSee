@@ -30,7 +30,9 @@ public class BigBoyActivity extends AppCompatActivity {
 
             if (alertIDs != null) {
                 JSONObject[] alerts = getAlerts(alertIDs);
-                notifyAlert(alerts);
+                for(JSONObject jo : alerts) {
+                    notifyAlert(jo);
+                }
             } else {
                 System.out.println("no alerts");
             }
