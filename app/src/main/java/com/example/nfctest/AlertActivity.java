@@ -24,7 +24,9 @@ public class AlertActivity extends AppCompatActivity {
             json = new JSONObject(callingIntent.getStringExtra("JSON_STRING"));
             TextView description = findViewById(R.id.description);
             TextView alertTitle = findViewById(R.id.alertTitle);
+            TextView alertDate = findViewById(R.id.alertDate);
             alertTitle.setText(json.optString("title"));
+            alertDate.setText(json.optString("start"));
             description.setText(json.optString("description"));
 
         } catch (JSONException e) {
