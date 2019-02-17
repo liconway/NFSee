@@ -12,11 +12,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.nfc.NdefMessage;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
@@ -29,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton tglReadWrite;
     EditText txtTagContent;
     private boolean testNFCRead = true;
+
+    private final String url = "http://10.13.106.210:8192/data?uuid=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +98,44 @@ public class MainActivity extends AppCompatActivity {
             String tagContent = getTextFromNdefRecord(ndefRecord);
 
             txtTagContent.setText(tagContent);
+
+            String json = getRequest(tagContent);
+
+            // TODO: marker
         }
         else{
             Toast.makeText(this, "No NDEF Records Found!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private String getRequest(String uuid) {
+
+        final TextView mTextView = (TextView) findViewById(R.id.text);
+
+
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        // Request a string response from the provided URL.
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url+uuid, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        txtTagContent.setText(response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                txtTagContent.setText("nono bad");
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonRequest);
+
+        return null;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
