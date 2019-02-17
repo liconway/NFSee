@@ -72,7 +72,7 @@
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/company_title"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             android:fontFamily="@font/coolvetica"
             android:text="address"
@@ -106,14 +106,15 @@
 
         <ImageView
             android:id="@+id/company_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="165dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
             app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
 
         <TextView
@@ -134,7 +135,7 @@
             android:paddingBottom="10dp"
             android:text="McDonald’s (MCD) is a fast food, limited service restaurant with more than 35,000 restaurants in over 100 countries."
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager_id"
