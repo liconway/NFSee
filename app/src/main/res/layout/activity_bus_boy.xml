@@ -70,10 +70,10 @@
             app:srcCompat="@mipmap/ic_launcher_foreground_logo_white" />
 
         <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_below="@+id/share"
-
+            android:layout_width="385dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bus_stop"
+            android:id="@+id/busTable"
             android:layout_marginTop="0dp"
             android:paddingTop="30dp"
             android:visibility="visible">
@@ -271,15 +271,14 @@
         </TableLayout>
 
 
-
         <Button
             android:id="@+id/share"
             android:layout_width="395dp"
-            android:layout_height="72dp"
-            android:layout_below="@+id/bus_stop"
+            android:layout_height="73dp"
+            android:layout_below="@+id/busTable"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:background="#ffffff"
