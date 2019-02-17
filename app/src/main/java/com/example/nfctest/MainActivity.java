@@ -24,7 +24,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
@@ -32,7 +31,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 import static android.nfc.NdefRecord.createTextRecord;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        tglReadWrite = findViewById(R.id.tglReadWrite);
-        txtTagContent = (EditText) findViewById(R.id.txtTagContent);
+//        tglReadWrite = findViewById(R.id.tglReadWrite);
+//        txtTagContent = (EditText) findViewById(R.id.txtTagContent);
 
         NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -67,24 +65,13 @@ public class MainActivity extends AppCompatActivity {
         super.onNewIntent(intent);
 
         if(intent.hasExtra(NfcAdapter.EXTRA_TAG)){
-            //Toast.makeText(this, "Nfc Intent!", Toast.LENGTH_SHORT).show();
-            if(tglReadWrite.isChecked()){
-                Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
-
-                if(parcelables != null && parcelables.length > 0){
-
-                    readTextFromMessage((NdefMessage) parcelables[0]);
-                }
-                else{
-                    Toast.makeText(this, "No NDEF Messages Found!", Toast.LENGTH_SHORT).show();
-                }
-
+            Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
+            Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+            if(parcelables != null && parcelables.length > 0){
+                readTextFromMessage((NdefMessage) parcelables[0]);
             }
             else{
-                Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-                NdefMessage ndefMessage = createNdefMessage(txtTagContent.getText()+"");
-
-                //writeNdefMessage(tag, ndefMessage);
+                Toast.makeText(this, "No NDEF Messages Found!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -100,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
             txtTagContent.setText(tagContent);
 
             String json = getRequest(tagContent);
-
-            // TODO: marker
         }
         else{
             Toast.makeText(this, "No NDEF Records Found!", Toast.LENGTH_SHORT).show();
@@ -145,10 +130,6 @@ public class MainActivity extends AppCompatActivity {
         NdefMessage ndefMessage = new NdefMessage(new NdefRecord[] {ndefRecord});
 
         return ndefMessage;
-    }
-
-    public void tglReadWriteOnClick(View view){
-        txtTagContent.setText("Hello");
     }
 
     public String getTextFromNdefRecord(NdefRecord ndefRecord)
