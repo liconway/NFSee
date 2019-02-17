@@ -44,16 +44,30 @@ app.get('/data', (req, res) => {
 
             var info = result[0];
             delete info['_id'];
-            info.photos = [];
             info.alerts = [];
 
-            dbo.collection('photos').find(query).toArray((err, presult) => {
-                for(var i = 0; i < presult.length; i++) {
-                    delete presult[i]['_id'];
-                    delete presult[i].uuid;
-                    info.photos.push(presult[i]);
-                }
-            })
+            switch(info.layout) {
+            case 0:
+                info.photos = [];
+                dbo.collection('photos').find(query).toArray((err, presult) => {
+                    for(var i = 0; i < presult.length; i++) {
+                        delete presult[i]['_id'];
+                        delete presult[i].uuid;
+                        info.photos.push(presult[i]);
+                    }
+                })
+                break;
+            case 1:
+                info.vehicles = [];
+                dbo.collection('vehicles').find(query).toArray((err, presult) => {
+                    for(var i = 0; i < presult.length; i++) {
+                        delete presult[i]['_id'];
+                        delete presult[i].uuid;
+                        info.vehicles.push(presult[i]);
+                    }
+                })
+                break;
+            }
 
             dbo.collection('alerts').find({}).toArray((err, nresult) => {
                 for(var i = 0; i < nresult.length; i++) {
