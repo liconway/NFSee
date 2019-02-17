@@ -16,28 +16,15 @@ public class Favorites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.backToMainButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        configureBackButton();
-    }
-
-    private void configureBackButton(){
-        FloatingActionButton backButton = (FloatingActionButton) findViewById(R.id.backToMainButton);
-        backButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                startActivity(new Intent(Favorites.this, MainActivity.class));
-            }
-        });
+//        FloatingActionButton fab = findViewById(R.id.backToMainButton);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(Favorites.this, MainActivity.class));
+//            }
+//        });
     }
 
 }

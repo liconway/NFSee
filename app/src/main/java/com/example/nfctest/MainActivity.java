@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +59,17 @@ public class MainActivity extends AppCompatActivity {
         else{
             Toast.makeText(this, "NFC not available", Toast.LENGTH_LONG).show();
         }
+        configureButton();
+    }
+
+    public void configureButton(){
+        Button favorite = findViewById(R.id.favorite);
+        favorite.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                startActivity(new Intent(MainActivity.this, Favorites.class));
+            }
+        });
     }
 
     @Override
