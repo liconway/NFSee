@@ -1,7 +1,7 @@
 package com.example.nfctest;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
+
 import android.app.PendingIntent;
 import android.content.IntentFilter;
 import android.nfc.NdefRecord;
@@ -11,32 +11,16 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 import android.content.Intent;
 import android.nfc.NdefMessage;
 import static android.nfc.NdefRecord.createTextRecord;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    NfcAdapter nfcAdapter;
-    ToggleButton tglReadWrite;
-    EditText txtTagContent;
-    private boolean testNFCRead = true;
     JSONObject data;
 
     private static final String url = "http://10.13.106.210:8192/data?uuid=";
@@ -46,17 +30,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-//        tglReadWrite = findViewById(R.id.tglReadWrite);
-//        txtTagContent = (EditText) findViewById(R.id.txtTagContent);
+        Utils.nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
-        NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-
-        if(nfcAdapter!=null && nfcAdapter.isEnabled()){
-            Toast.makeText(this, "NFC available!", Toast.LENGTH_LONG).show();
-        }
-        else{
-            Toast.makeText(this, "NFC not available", Toast.LENGTH_LONG).show();
+        if(Utils.nfcAdapter!=null && Utils.nfcAdapter.isEnabled()){
+            Toast.makeText(this, "NFC available!", Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(this, "NFC not available", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -64,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BigBoyActivity.class);
         intent.putExtra("JSON_STRING", json);
         startActivity(intent);
-        TextView loading = findViewById(R.id.funtext);
-        loading.setText("Ready to scan, boss");
     }
 
     @Override
@@ -143,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         IntentFilter[] intentFilters = new IntentFilter[] {};
 
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
+        Utils.nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
     }
 
     @Override
@@ -156,11 +133,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        TextView loading = findViewById(R.id.funtext);
+        loading.setText("Ready to scan, boss");
         enableForegroundDispatchSystem();
     }
 
     private void disableForegroundDispatchSystem(){
-        nfcAdapter.disableForegroundDispatch(this);
+        Utils.nfcAdapter.disableForegroundDispatch(this);
     }
 }

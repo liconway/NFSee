@@ -3,6 +3,7 @@ package com.example.nfctest;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.nfc.NfcAdapter;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,9 +15,11 @@ import com.android.volley.toolbox.Volley;
 import java.net.URL;
 
 public class Utils {
-
+    public static NfcAdapter nfcAdapter;
 
     public static void getRequest(String uuid, final VolleyCallback callback, Activity activity, String url) {
+
+
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(activity);
