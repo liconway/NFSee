@@ -26,15 +26,6 @@
         android:id="@+id/include"
         layout="@layout/content_alert" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="#888888"
-        app:srcCompat="@android:drawable/arrow_up_float" />
-
     <TextView
         android:id="@+id/alertTitle"
         android:layout_width="wrap_content"
@@ -47,18 +38,18 @@
         android:text="Title"
         />
 
-    <TextView
-        android:id="@+id/alertDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|start"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="160dp"
-        android:text="Date"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_anchor="@+id/alertTitle"
-        app:layout_anchorGravity="left|bottom" />
+    <!--<TextView-->
+        <!--android:id="@+id/alertDate"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="top|start"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginTop="160dp"-->
+        <!--android:text="Date"-->
+        <!--android:textColor="#000000"-->
+        <!--android:textSize="20dp"-->
+        <!--app:layout_anchor="@+id/alertTitle"-->
+        <!--app:layout_anchorGravity="left|bottom" />-->
 
     <TextView
         android:id="@+id/description"
@@ -66,11 +57,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="200dp"
         android:textColor="#000000"
         android:textSize="20dp"
-        android:text="Description"
-        app:layout_anchor="@+id/alertDate"
-        app:layout_anchorGravity="left|bottom" />
+        android:text="@string/description"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

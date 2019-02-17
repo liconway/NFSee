@@ -1,6 +1,7 @@
 package com.example.nfctest;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.IntentFilter;
 import android.nfc.NdefRecord;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean testNFCRead = true;
     JSONObject data;
 
-    private final String url = "http://10.13.106.210:8192/data?uuid=";
+    private static final String url = "http://10.13.106.210:8192/data?uuid=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BigBoyActivity.class);
         intent.putExtra("JSON_STRING", json);
         startActivity(intent);
+        TextView loading = findViewById(R.id.funtext);
+        loading.setText("Ready to scan, boss");
     }
 
     @Override
@@ -85,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
             Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if(parcelables != null && parcelables.length > 0){
+                TextView loading = findViewById(R.id.funtext);
+                loading.setText("Loading...");
                 readTextFromMessage((NdefMessage) parcelables[0]);
             }
             else{
@@ -113,28 +118,24 @@ public class MainActivity extends AppCompatActivity {
                     openBigBoy(result);
 
                 }
-            });
+            }, this);
         }
         else{
             Toast.makeText(this, "No NDEF Records Found!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void getRequest(String uuid, final VolleyCallback callback) {
-
-        final TextView mTextView = (TextView) findViewById(R.id.text);
-
+    public static void getRequest(String uuid, final VolleyCallback callback, Activity activity) {
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(activity);
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url+uuid,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println("-----------------------------------------");
-                        System.out.println(response);
+                        System.out.println("http request works");
                         callback.onSuccess(response);
                     }
                 }, new Response.ErrorListener() {

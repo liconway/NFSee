@@ -46,7 +46,7 @@
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/coolvetica"
                     android:text="NFSee"
-                    android:textColor="#ffffff"
+                    android:textColor="#555555"
                     android:textSize="40dp" />
                 <LinearLayout
                     android:orientation="horizontal"
@@ -68,6 +68,7 @@
                     android:id="@+id/favourite_button"
                     android:layout_width="76dp"
                     android:layout_height="77dp"
+
                     android:layout_marginLeft="40dp"
                     android:layout_marginTop="15dp"
                     android:layout_gravity="top|right"
@@ -179,6 +180,21 @@
             android:text="McDonald’s (MCD) is a fast food, limited service restaurant with more than 35,000 restaurants in over 100 countries."
             android:textColor="#000000"
             android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Gallery"
+            android:layout_width="395dp"
+            android:layout_height="301dp"
+            android:layout_below="@+id/description"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:fontFamily="@font/coolvetica"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:text="TextView" />
 
         <TextView
             android:id="@+id/hot_deal"
