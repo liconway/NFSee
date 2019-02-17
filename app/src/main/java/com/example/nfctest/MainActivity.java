@@ -39,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void openBigBoy(String json) {
-        Intent intent = new Intent(this, BigBoyActivity.class);
+    public void openBoy(Class<? extends AppCompatActivity> boy, String json) {
+        Intent intent = new Intent(this, boy);
         intent.putExtra("JSON_STRING", json);
         startActivity(intent);
     }
+
 
     @Override
     protected void onNewIntent(Intent intent){
@@ -83,7 +84,16 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     System.out.println(result);
-                    openBigBoy(result);
+                    char type = result.charAt(16);
+
+                    switch(type) {
+                        case '0':
+                            openBoy(BigBoyActivity.class, result);
+                        break;
+                        case '1':
+                            openBoy(BusBoyActivity.class, result);
+                        break;
+                    }
 
                 }
             }, this, url);

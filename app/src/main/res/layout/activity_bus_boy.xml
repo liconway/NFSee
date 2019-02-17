@@ -31,13 +31,13 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="145dp"
+            android:layout_marginTop="120dp"
             android:layout_marginEnd="0dp"
 
             android:layout_marginRight="0dp"
             android:fontFamily="@font/coolvetica"
             android:gravity="center"
-            android:text="BusStop"
+            android:text="Bus Stop"
             android:textColor="#000000"
             android:textSize="30dp" />
 
@@ -69,37 +69,177 @@
             android:orientation="vertical"
             app:srcCompat="@mipmap/ic_launcher_foreground_logo_white" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="395dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/bus_stop"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="59dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="180dp"
+            android:paddingTop="30dp"
+            android:visibility="visible">
 
-            android:fontFamily="@font/coolvetica"
-            android:gravity="left"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="10dp"
-            android:text="McDonald’s (MCD) is a fast food, limited service restaurant with more than 35,000 restaurants in over 100 countries."
-            android:textColor="#000000"
-            android:textSize="20dp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/thin_banner"
-            android:layout_width="347dp"
-            android:layout_height="8dp"
-            android:layout_below="@+id/viewPager_id"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/banner" />
+                <TextView
+                    android:id="@+id/r0c0"
+                    android:layout_width="166dp"
+                    android:layout_height="wrap_content"
+                    android:background="#aaaaaa"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r0c1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#dddddd"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r0c2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#aaaaaa"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r0c3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#dddddd"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/r1c0"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="#dddddd"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r1c1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#aaaaaa"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r1c2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#dddddd"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r1c3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#aaaaaa"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/r2c0"
+                    android:layout_width="201dp"
+                    android:layout_height="wrap_content"
+                    android:background="#aaaaaa"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r2c1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#dddddd"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r2c2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#aaaaaa"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r2c3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#dddddd"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/r3c0"
+                    android:layout_width="201dp"
+                    android:layout_height="wrap_content"
+                    android:background="#dddddd"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r3c1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#aaaaaa"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r3c2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#dddddd"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/r3c3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#aaaaaa"
+                    android:paddingBottom="20dp"
+                    android:text="TextView"
+                    android:textColor="#000000" />
+            </TableRow>
+        </TableLayout>
 
 
     </RelativeLayout>
