@@ -20,7 +20,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".AlertActivity"
-            android:label="Alert!"
+            android:label="Emergency Alert"
             android:theme="@style/NoActionBar"
             android:screenOrientation="portrait"></activity>
         <activity

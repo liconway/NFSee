@@ -151,9 +151,7 @@ public class MainActivity extends AppCompatActivity {
     private void enableForegroundDispatchSystem(){
 
         Intent intent = new Intent(this, MainActivity.class).addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
-
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
         IntentFilter[] intentFilters = new IntentFilter[] {};
 
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);
