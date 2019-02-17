@@ -211,7 +211,7 @@
                 <TextView
                     android:id="@+id/r2c3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:width="85dp"
                     android:background="#dddddd"
                     android:paddingBottom="20dp"
