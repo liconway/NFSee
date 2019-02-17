@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -28,11 +27,25 @@ public class BigBoyActivity extends AppCompatActivity {
 
         System.out.println("Big Boy is Running!!");
 
-        Intent callingIntent = getIntent();
-        JSONObject json;
+        JSONObject json = getJSON();
+    }
 
+    private Bitmap[] getBitmaps(String[] urls) {
         try {
-            json = new JSONObject(callingIntent.getStringExtra("JSON_STRING"));
+            URLImageLoader loader = new URLImageLoader();
+            loader.execute(urls);
+            return loader.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Trouble loading company logo");
+            return null;
+        }
+    }
+
+    private JSONObject getJSON() {
+        JSONObject json;
+        try {
+            json = new JSONObject(getIntent().getStringExtra("JSON_STRING"));
             System.out.println(json.toString());
             displayData(json);
             JSONArray alerts = json.optJSONArray("alerts");
@@ -48,16 +61,7 @@ public class BigBoyActivity extends AppCompatActivity {
             json = null;
             e.printStackTrace();
         }
-
-        ImageView companyLogo = findViewById(R.id.company_logo);
-
-        try {
-            Bitmap bmp = Utils.getBitmap(json.optString("logo"));
-            companyLogo.setImageBitmap(bmp);
-        } catch (Exception e) {
-            System.err.println("Image not found!");
-        }
-
+        return json;
     }
 
     private void displayData(JSONObject data) {
