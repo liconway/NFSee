@@ -9,6 +9,7 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,16 +20,21 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".BusBoyActivity"
+            android:label="@string/title_activity_bus_boy"
+            android:theme="@style/NoActionBar"></activity>
+        <activity
             android:name=".AlertActivity"
             android:label="Emergency Alert"
-            android:theme="@style/NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".BigBoyActivity"
             android:label="@string/title_activity_big_boy"
-            android:theme="@style/NoActionBar"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,9 +47,5 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-
 
 </manifest>

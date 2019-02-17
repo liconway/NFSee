@@ -10,4 +10,5 @@
     <string name="url">url</string>
     <string name="company_title">Company_Title</string>
     <string name="description">Description</string>
+    <string name="title_activity_bus_boy">BusBoyActivity</string>
 </resources>

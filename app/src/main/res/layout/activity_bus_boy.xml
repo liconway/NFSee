@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        tools:context=".MainActivity">
+
+
+        <ImageView
+            android:id="@+id/banner"
+            android:layout_width="379dp"
+            android:layout_height="110dp"
+            android:src="@drawable/banner" />
+
+        <TextView
+            android:id="@+id/company_title"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="157dp"
+
+            android:fontFamily="@font/coolvetica"
+            android:text="Company_Title"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+
+        <TextView
+            android:id="@+id/NFSee"
+            android:layout_width="wrap_content"
+            android:layout_height="108dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+
+            android:fontFamily="@font/coolvetica"
+            android:text="NFSee"
+            android:textColor="#ffffff"
+            android:textSize="40dp" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/banner"
+            android:layout_alignRight="@+id/banner"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="2dp"
+            android:orientation="vertical"
+            app:srcCompat="@mipmap/ic_launcher_foreground_logo_white" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_title"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/coolvetica"
+            android:text="address"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/address"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/coolvetica"
+            android:text="phone"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/url"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone"
+
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/coolvetica"
+            android:text="url"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/company_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/url"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+
+            android:fontFamily="@font/coolvetica"
+            android:gravity="left"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
+            android:text="McDonald’s (MCD) is a fast food, limited service restaurant with more than 35,000 restaurants in over 100 countries."
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/thin_banner"
+            android:layout_width="347dp"
+            android:layout_height="8dp"
+            android:layout_below="@+id/viewPager_id"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/banner" />
+
+
+        <ImageView
+            android:id="@+id/thin_banner2"
+            android:layout_width="347dp"
+            android:layout_height="8dp"
+            android:layout_below="@+id/description"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/banner" />
+
+        <ImageButton
+
+            android:id="@+id/yelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thin_banner"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="125dp"
+            android:layout_marginRight="125dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@mipmap/ic_launcher_foreground_yelp_icon" />
+
+
+        <ImageButton
+            android:id="@+id/twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thin_banner"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@mipmap/ic_launcher_foreground_twitter_icon" />
+
+        <ImageButton
+            android:id="@+id/faceBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thin_banner"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="18dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@mipmap/ic_launcher_foreground_facebook_icon" />
+
+        <Button
+            android:id="@+id/jobListing"
+            android:layout_width="395dp"
+            android:layout_height="72dp"
+            android:layout_below="@+id/yelp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:background="#ffffff"
+            android:fontFamily="@font/coolvetica"
+            android:text="Job Listings"
+            android:textColor="#8d02b3"
+            android:textSize="35dp" />
+
+
+    </RelativeLayout>
+</ScrollView>
