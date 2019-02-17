@@ -44,7 +44,16 @@ app.get('/data', (req, res) => {
 
             var info = result[0];
             delete info['_id'];
+            info.photos = [];
             info.alerts = [];
+
+            dbo.collection('photos').find(query).toArray((err, presult) => {
+                for(var i = 0; i < presult.length; i++) {
+                    delete presult[i]['_id'];
+                    delete presult[i].uuid;
+                    info.photos.push(presult[i]);
+                }
+            })
 
             dbo.collection('alerts').find({}).toArray((err, nresult) => {
                 for(var i = 0; i < nresult.length; i++) {
