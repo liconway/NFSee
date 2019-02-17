@@ -1,6 +1,7 @@
 package com.example.nfctest;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -14,10 +15,10 @@ public class SlideAdapter extends PagerAdapter {
     private Context context;
     LayoutInflater inflater;
 
-    public int[] images;
+    public Bitmap[] images;
     private String[] captions;
 
-    public SlideAdapter(Context context, int[] images, String[] captions) {
+    public SlideAdapter(Context context, Bitmap[] images, String[] captions) {
         this.context = context;
         this.images = images;
         this.captions = captions;
@@ -40,7 +41,7 @@ public class SlideAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.layout_slideshow, container, false);
 
         ImageView img = (ImageView) view.findViewById(R.id.imageView_id);
-        img.setImageResource(images[position]);
+        img.setImageBitmap(images[position]);
 
         TextView text = (TextView) view.findViewById(R.id.textView_id);
         text.setText(captions[position]);

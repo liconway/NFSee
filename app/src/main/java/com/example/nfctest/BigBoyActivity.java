@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -61,9 +62,9 @@ public class BigBoyActivity extends AppCompatActivity {
             json = new JSONObject(getIntent().getStringExtra("JSON_STRING"));
             System.out.println(json.toString());
             displayData(json);
-            JSONArray alerts = json.optJSONArray("alerts");
 
-            if (alerts != null) {
+            JSONArray alerts = json.optJSONArray("alerts");
+            if (alerts.length() > 0) {
                 JSONObject alert = getAlerts(alerts);
                 notifyAlert(alert);
             } else {
@@ -96,17 +97,24 @@ public class BigBoyActivity extends AppCompatActivity {
 
         JSONArray photos = data.optJSONArray("photos");
         //int[] images = new int[] { R.drawable.test, R.drawable.test2 };
-        int[] images = new int[photos.length()];
+        String[] urls = new String[photos.length()];
+        Bitmap[] images = new Bitmap[photos.length()];
         String[] captions = new String[photos.length()];
 
+
         for(int i = 0; i < photos.length(); i++) {
-            // TODO: Insert proper photo
-            images[i] = R.drawable.test;
-            captions[i] = photos.optJSONObject(i).optString("caption");
+            JSONObject obj = photos.optJSONObject(i);
+            urls[i] = obj.optString("url");
+            captions[i] = obj.optString("caption");
         }
+        images = getBitmaps(urls);
 
         adapter = new SlideAdapter(this, images, captions);
         viewPager.setAdapter(adapter);
+
+        ImageView image = (ImageView) findViewById(R.id.company_logo);
+        Bitmap bitmap = getBitmaps(new String[] { data.optString("logo") })[0];
+        image.setImageBitmap(bitmap);
     }
 
     private JSONObject getAlerts(JSONArray alerts) {
