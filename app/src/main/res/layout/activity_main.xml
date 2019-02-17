@@ -11,18 +11,69 @@
     android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
-    <ToggleButton
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/favorite"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
-        android:id="@+id/tglReadWrite"
-        android:textOn="Read"
-        android:textOff="Write"
-        android:checked="true"
-        android:onClick="tglReadWriteOnClick"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="570dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/txtTagContent"/>
+
+        android:background="#8d02b3"
+
+        android:fontFamily="@font/coolvetica"
+        android:text="Favorites"
+        android:textColor="#ffffff"
+        android:textSize="50dp" />
+
+    <TextView
+        android:id="@+id/funtext"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="433dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+
+        android:fontFamily="@font/coolvetica"
+        android:gravity="center"
+        android:text="Ready to scan boss"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:fontFamily="@font/coolvetica"
+        android:gravity="center"
+        android:text="NFSee"
+        android:textColor="#000"
+        android:textSize="80dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="384dp"
+        android:layout_height="312dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        app:srcCompat="@mipmap/ic_launcher_foreground_Icon" />
 
 </RelativeLayout>

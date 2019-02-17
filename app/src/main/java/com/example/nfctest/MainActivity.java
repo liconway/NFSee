@@ -32,7 +32,6 @@ import java.io.UnsupportedEncodingException;
 
 import static android.nfc.NdefRecord.createTextRecord;
 
-
 public class MainActivity extends AppCompatActivity {
 
     NfcAdapter nfcAdapter;
@@ -48,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        tglReadWrite = findViewById(R.id.tglReadWrite);
-        txtTagContent = (EditText) findViewById(R.id.txtTagContent);
+//        tglReadWrite = findViewById(R.id.tglReadWrite);
+//        txtTagContent = (EditText) findViewById(R.id.txtTagContent);
 
         NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -67,23 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(intent.hasExtra(NfcAdapter.EXTRA_TAG)){
             Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
-            if(tglReadWrite.isChecked()){
-                Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
-
-                if(parcelables != null && parcelables.length > 0){
-
-                    readTextFromMessage((NdefMessage) parcelables[0]);
-                }
-                else{
-                    Toast.makeText(this, "No NDEF Messages Found!", Toast.LENGTH_SHORT).show();
-                }
-
+            Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+            if(parcelables != null && parcelables.length > 0){
+                readTextFromMessage((NdefMessage) parcelables[0]);
             }
             else{
-                Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-                NdefMessage ndefMessage = createNdefMessage(txtTagContent.getText()+"");
-
-                //writeNdefMessage(tag, ndefMessage);
+                Toast.makeText(this, "No NDEF Messages Found!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -142,10 +130,6 @@ public class MainActivity extends AppCompatActivity {
         NdefMessage ndefMessage = new NdefMessage(new NdefRecord[] {ndefRecord});
 
         return ndefMessage;
-    }
-
-    public void tglReadWriteOnClick(View view){
-        txtTagContent.setText("Hello");
     }
 
     public String getTextFromNdefRecord(NdefRecord ndefRecord)
