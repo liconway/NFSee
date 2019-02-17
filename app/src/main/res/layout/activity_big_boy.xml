@@ -111,7 +111,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="147dp"
+            android:layout_marginTop="170dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
@@ -139,26 +139,10 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager_id"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_height="220dp"
-            android:paddingBottom="20dp"
+            android:layout_height="300dp"
             android:layout_below="@+id/description"
-             />
-
-        <TextView
-            android:id="@+id/hot_deal"
-            android:layout_width="386dp"
-            android:layout_height="182dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="695dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:fontFamily="@font/coolvetica"
-            android:gravity="center"
-            android:textColor="#000000"
-            android:text="Hot Dealz" />
+            android:layout_marginTop="20dp"
+            android:paddingBottom="20dp" />
 
         <ImageView
             android:id="@+id/thin_banner"
@@ -167,64 +151,52 @@
             android:layout_below="@+id/viewPager_id"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:src="@drawable/banner" />
 
-        <TextView
-            android:id="@+id/hot_deal_desc_1"
-            android:layout_width="173dp"
-            android:layout_height="145dp"
+
+        <ImageButton
+
+            android:id="@+id/yelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/thin_banner"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="18dp"
-            android:layout_marginEnd="29dp"
-            android:layout_marginRight="29dp"
-            android:fontFamily="@font/coolvetica"
-            android:gravity="center"
-            android:text="Hot Dealz"
-            android:textColor="#000000" />
+            android:layout_marginEnd="135dp"
+            android:layout_marginRight="135dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@mipmap/ic_launcher_foreground_yelp_icon" />
 
-        <ImageView
-            android:id="@+id/hot_deal_image_1"
-            android:layout_width="173dp"
-            android:layout_height="145dp"
+
+        <ImageButton
+            android:id="@+id/twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/thin_banner"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginRight="14dp"
-            android:layout_toStartOf="@+id/hot_deal_desc_1"
-            android:layout_toLeftOf="@+id/hot_deal_desc_1"
-            app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
-
-        <ImageView
-            android:id="@+id/hot_deal_image_2"
-            android:layout_width="173dp"
-            android:layout_height="145dp"
-            android:layout_below="@+id/hot_deal_image_1"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginRight="14dp"
-            android:layout_toStartOf="@+id/hot_deal_desc_2"
-            android:layout_toLeftOf="@+id/hot_deal_desc_2"
-            app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
-
-        <TextView
-            android:id="@+id/hot_deal_desc_2"
-            android:layout_width="173dp"
-            android:layout_height="145dp"
-            android:layout_below="@+id/hot_deal_desc_1"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="29dp"
-            android:layout_marginRight="29dp"
-            android:fontFamily="@font/coolvetica"
-            android:gravity="center"
-            android:text="Hot Dealz"
-            android:textColor="#000000" />
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@mipmap/ic_launcher_foreground_twitter_icon" />
+
+        <ImageButton
+            android:id="@+id/faceBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thin_banner"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="18dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@mipmap/ic_launcher_foreground_facebook_icon" />
 
 
     </RelativeLayout>

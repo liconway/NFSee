@@ -5,11 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +25,7 @@ import org.json.JSONObject;
 public class BigBoyActivity extends AppCompatActivity {
     ViewPager viewPager;
     SlideAdapter adapter;
+    JSONObject json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,26 @@ public class BigBoyActivity extends AppCompatActivity {
 
         System.out.println("Big Boy is Running!!");
 
-        JSONObject json = getJSON();
+        json = getJSON();
+
+        ImageButton taButton = findViewById(R.id.tripAdvisor);
+        ImageButton yelpButton = findViewById(R.id.yelp);
+
+        taButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("taurl")));
+                startActivity(browserIntent);
+            }
+        });
+
+        yelpButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("yurl")));
+                startActivity(browserIntent);
+            }
+        });
 
     }
 
