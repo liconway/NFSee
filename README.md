@@ -1,4 +1,4 @@
-# NFSee:
+# NFSee
 
 ## Prompt
 
