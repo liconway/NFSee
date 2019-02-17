@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.nfc.NdefMessage;
 import static android.nfc.NdefRecord.createTextRecord;
 
@@ -26,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
@@ -71,10 +71,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** Called when the user taps the Send button */
-    public void openDisplay(View view, JSONObject json) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        intent.putExtra("JSON_STRING", json.toString());
+    public void openBigBoy(String json) {
+        Intent intent = new Intent(this, BigBoyActivity.class);
+        intent.putExtra("JSON_STRING", json);
         startActivity(intent);
     }
 
@@ -106,13 +105,12 @@ public class MainActivity extends AppCompatActivity {
             NdefRecord ndefRecord = ndefRecords[0];
 
             String tagContent = getTextFromNdefRecord(ndefRecord);
-            String json;
 
             getRequest(tagContent, new VolleyCallback() {
                 @Override
-                public void onSuccess(JSONObject result) {
+                public void onSuccess(String result) {
                     System.out.println(result);
-                    openDisplay(view, result);
+                    openBigBoy(result);
 
                 }
             });
@@ -131,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         // Request a string response from the provided URL.
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url+uuid, null,
-                new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url+uuid,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
                         System.out.println("-----------------------------------------");
-                        System.out.println(response.toString());
+                        System.out.println(response);
                         callback.onSuccess(response);
                     }
                 }, new Response.ErrorListener() {
@@ -148,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Add the request to the RequestQueue.
-        queue.add(jsonRequest);
+        queue.add(stringRequest);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
