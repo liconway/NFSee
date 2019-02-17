@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,13 +25,19 @@ public class BigBoyActivity extends AppCompatActivity {
 
         Intent callingIntent = getIntent();
         JSONObject json;
+
         try {
             json = new JSONObject(callingIntent.getStringExtra("JSON_STRING"));
+
+            System.out.println(json.toString());
+
+            displayData(json);
+
             JSONArray alertIDs = json.optJSONArray("alerts");
 
             if (alertIDs != null) {
                 JSONObject[] alerts = getAlerts(alertIDs);
-                notifyAlert(alerts);
+                for (JSONObject a : alerts) notifyAlert(a);
             } else {
                 System.out.println("no alerts");
             }
@@ -39,6 +46,20 @@ public class BigBoyActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // more big boi stuff
+    }
+
+    private void displayData(JSONObject data) {
+        TextView field = (TextView) findViewById(R.id.company_title);
+        field.setText(R.string.company_title);
+
+        field = (TextView) findViewById(R.id.address);
+        field.setText(R.string.address);
+
+        field = (TextView) findViewById(R.id.phone);
+        field.setText(R.string.phone);
+
+        field = (TextView) findViewById(R.id.url);
+        field.setText(R.string.url);
     }
 
     private JSONObject[] getAlerts(JSONArray ids) {
