@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">nfcTest</string>
     <string name="title_activity_favorites">Favorites</string>
+    <string name="title_activity_test">Test</string>
+    <string name="title_activity_big_boy">BigBoyActivity</string>
     <string name="title_activity_favorite">FavoriteActivity</string>
     <string name="title_activity_alert">AlertActivity</string>
 </resources>

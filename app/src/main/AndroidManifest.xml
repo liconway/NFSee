@@ -26,6 +26,10 @@
             android:name=".FavoriteActivity"
             android:label="     Favorites"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".BigBoyActivity"
+            android:label="@string/title_activity_big_boy"
+            android:theme="@style/NoActionBar"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,5 +42,9 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
 
 </manifest>

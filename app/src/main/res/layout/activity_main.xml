@@ -25,11 +25,10 @@
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
 
-
         android:background="#8d02b3"
 
         android:fontFamily="@font/coolvetica"
-        android:text="Favorites"
+        android:text="Favourites"
         android:textColor="#ffffff"
         android:textSize="50dp" />
 
@@ -45,9 +44,10 @@
         android:layout_marginRight="0dp"
         android:textColor="#888888"
 
+
         android:fontFamily="@font/coolvetica"
         android:gravity="center"
-        android:text="Ready to scan boss"
+        android:text="Ready to scan, boss"
         android:textSize="40dp" />
 
     <TextView
