@@ -22,6 +22,7 @@
         <activity
             android:name=".BusBoyActivity"
             android:label="@string/title_activity_bus_boy"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"></activity>
         <activity
             android:name=".AlertActivity"
