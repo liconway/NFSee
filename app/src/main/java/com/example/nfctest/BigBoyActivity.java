@@ -58,7 +58,7 @@ public class BigBoyActivity extends AppCompatActivity {
 
         builder.setCancelable(true);
         builder.setTitle("Alert Notification");
-        builder.setMessage(jsonObject.optString("HEADLINE"));
+        builder.setMessage(jsonObject.optString("headline"));
 
         builder.setNegativeButton("Ignore", new DialogInterface.OnClickListener() {
             @Override
