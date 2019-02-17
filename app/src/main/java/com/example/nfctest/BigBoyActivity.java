@@ -30,7 +30,7 @@ public class BigBoyActivity extends AppCompatActivity {
 
             if (alertIDs != null) {
                 JSONObject[] alerts = getAlerts(alertIDs);
-                // TODO: call method that displays alert popups
+                notifyAlert(alerts);
             } else {
                 System.out.println("no alerts");
             }
@@ -51,11 +51,12 @@ public class BigBoyActivity extends AppCompatActivity {
 
 
 
-    private void notifyAlert(final String json){
+    private void notifyAlert(final JSONObject jsonObject){
         AlertDialog.Builder builder = new AlertDialog.Builder(BigBoyActivity.this);
 
         builder.setCancelable(true);
         builder.setTitle("Alert Notification");
+        builder.setMessage(jsonObject.optString("HEADLINE"));
 
         builder.setNegativeButton("Ignore", new DialogInterface.OnClickListener() {
             @Override
@@ -68,10 +69,12 @@ public class BigBoyActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(BigBoyActivity.this, AlertActivity.class);
-                intent.putExtra("JSON_STRING", json);
+                intent.putExtra("JSON_STRING", jsonObject.toString());
                 startActivity(intent);
             }
         });
+
+        builder.show();
     }
 
 }
