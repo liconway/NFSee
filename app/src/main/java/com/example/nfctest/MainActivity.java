@@ -21,6 +21,7 @@ import java.io.UnsupportedEncodingException;
 
 
 public class MainActivity extends AppCompatActivity {
+    static boolean isFirstTime = true;
     JSONObject data;
 
     private static final String url = "http://10.13.104.197:8192/data?uuid=";
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent){
         super.onNewIntent(intent);
+
+        pl.droidsonroids.gif.GifImageView gif = findViewById(R.id.Giff);
+        gif.setImageResource(R.drawable.loading_gif);
 
         if(intent.hasExtra(NfcAdapter.EXTRA_TAG)){
             Toast.makeText(this, "Scanning", Toast.LENGTH_SHORT).show();
@@ -146,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
         String s = "Loading...";
         loading.setText(s);
 
+        pl.droidsonroids.gif.GifImageView gif = findViewById(R.id.Giff);
+        gif.setImageResource(R.drawable.loading_gif);
+
         disableForegroundDispatchSystem();
     }
 
@@ -155,6 +162,9 @@ public class MainActivity extends AppCompatActivity {
         TextView loading = findViewById(R.id.funtext);
         loading.setText("Ready to scan, boss");
         enableForegroundDispatchSystem();
+
+        pl.droidsonroids.gif.GifImageView gif = findViewById(R.id.Giff);
+        gif.setImageResource(R.drawable.loading_gif_notgif);
     }
 
     private void disableForegroundDispatchSystem(){

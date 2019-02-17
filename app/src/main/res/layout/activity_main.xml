@@ -50,17 +50,16 @@
         android:textColor="#555555"
         android:textSize="80dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="384dp"
-        android:layout_height="312dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="190dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/Giff"
+        android:layout_width="382dp"
+        android:layout_height="350dp"
+        android:layout_below="@+id/Title"
+        android:layout_marginTop="-12dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/loading_gif_notgif" />
+
 
 
 </RelativeLayout>
