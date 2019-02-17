@@ -158,7 +158,8 @@
 
 
         <ImageButton
-            android:id="@+id/yelp_icon"
+
+            android:id="@+id/yelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thin_banner"
@@ -172,7 +173,7 @@
 
 
         <ImageButton
-            android:id="@+id/twitter_icon"
+            android:id="@+id/twitter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thin_banner"
@@ -185,7 +186,7 @@
             app:srcCompat="@mipmap/ic_launcher_foreground_twitter_icon" />
 
         <ImageButton
-            android:id="@+id/facebook_icon"
+            android:id="@+id/faceBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thin_banner"
