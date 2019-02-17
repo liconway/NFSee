@@ -2,11 +2,13 @@ package com.example.nfctest;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -31,12 +33,8 @@ public class BigBoyActivity extends AppCompatActivity {
 
         try {
             json = new JSONObject(callingIntent.getStringExtra("JSON_STRING"));
-
             System.out.println(json.toString());
-
             displayData(json);
-
-
             JSONArray alerts = json.optJSONArray("alerts");
 
             if (alerts != null) {
@@ -50,24 +48,33 @@ public class BigBoyActivity extends AppCompatActivity {
             json = null;
             e.printStackTrace();
         }
-        // more big boi stuff
+
+        ImageView companyLogo = findViewById(R.id.company_logo);
+
+        try {
+            Bitmap bmp = Utils.getBitmap(json.optString("logo"));
+            companyLogo.setImageBitmap(bmp);
+        } catch (Exception e) {
+            System.err.println("Image not found!");
+        }
+
     }
 
     private void displayData(JSONObject data) {
         TextView field = (TextView) findViewById(R.id.company_title);
-        //field.setText(R.string.company_title);
+
         field.setText(data.optString("title"));
 
-        field = (TextView) findViewById(R.id.address);
+        field = findViewById(R.id.address);
         field.setText(data.optString("address"));
 
-        field = (TextView) findViewById(R.id.phone);
+        field = findViewById(R.id.phone);
         field.setText(data.optString("phone"));
 
-        field = (TextView) findViewById(R.id.url);
+        field = findViewById(R.id.url);
         field.setText(data.optString("url"));
 
-        field = (TextView) findViewById(R.id.description);
+        field = findViewById(R.id.description);
         field.setText(data.optString("description"));
 
         JSONArray photos = data.optJSONArray("photos");

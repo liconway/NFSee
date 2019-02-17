@@ -110,43 +110,18 @@ public class MainActivity extends AppCompatActivity {
 
             String tagContent = getTextFromNdefRecord(ndefRecord);
 
-            getRequest(tagContent, new VolleyCallback() {
+            Utils.getRequest(tagContent, new VolleyCallback() {
                 @Override
                 public void onSuccess(String result) {
                     System.out.println(result);
                     openBigBoy(result);
 
                 }
-            }, this);
+            }, this, url);
         }
         else{
             Toast.makeText(this, "No NDEF Records Found!", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public static void getRequest(String uuid, final VolleyCallback callback, Activity activity) {
-
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(activity);
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url+uuid,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        System.out.println("http request works");
-                        callback.onSuccess(response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                System.err.println("nono bad");
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -176,9 +151,7 @@ public class MainActivity extends AppCompatActivity {
     private void enableForegroundDispatchSystem(){
 
         Intent intent = new Intent(this, MainActivity.class).addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
-
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
         IntentFilter[] intentFilters = new IntentFilter[] {};
 
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null);

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#bbbbbb"
+    android:background="#dddddd"
     tools:context=".AlertActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -13,18 +14,30 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppBarOverlay">
 
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="80dp"
             android:background="#ff0000"
-            app:popupTheme="@style/PopupOverlay" />
+            app:popupTheme="@style/PopupOverlay"
+            />
 
     </android.support.design.widget.AppBarLayout>
 
     <include
         android:id="@+id/include"
         layout="@layout/content_alert" />
+
+    <TextView
+        android:id="@+id/headerNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:text="Emergency Alert!" />
 
     <TextView
         android:id="@+id/alertTitle"
@@ -34,22 +47,22 @@
         android:layout_marginLeft="20dp"
         android:layout_gravity="top|start"
         android:textColor="#000000"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:text="Title"
         />
 
-    <!--<TextView-->
-        <!--android:id="@+id/alertDate"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="top|start"-->
-        <!--android:layout_marginLeft="20dp"-->
-        <!--android:layout_marginTop="160dp"-->
-        <!--android:text="Date"-->
-        <!--android:textColor="#000000"-->
-        <!--android:textSize="20dp"-->
-        <!--app:layout_anchor="@+id/alertTitle"-->
-        <!--app:layout_anchorGravity="left|bottom" />-->
+    <TextView
+        android:id="@+id/alertDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="180dp"
+        android:text="Date"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_anchor="@+id/alertTitle"
+        app:layout_anchorGravity="left|bottom" />
 
     <TextView
         android:id="@+id/description"
@@ -57,7 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="230dp"
         android:textColor="#000000"
         android:textSize="20dp"
         android:text="@string/description"
