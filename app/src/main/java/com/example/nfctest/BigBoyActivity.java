@@ -30,18 +30,20 @@ public class BigBoyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_big_boy);
 
         viewPager = findViewById(R.id.viewPager_id);
-
         System.out.println("Big Boy is Running!!");
-
         json = getJSON();
 
-        ImageButton taButton = findViewById(R.id.tripAdvisor);
-        ImageButton yelpButton = findViewById(R.id.yelp);
+        configureButtons();
+    }
 
-        taButton.setOnClickListener(new View.OnClickListener(){
+    private void configureButtons(){
+        ImageButton facebookButton = findViewById(R.id.faceBook);
+        ImageButton twitterButton = findViewById(R.id.twitter);
+        ImageButton yelpButton = findViewById(R.id.yelp);
+        twitterButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("taurl")));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("twurl")));
                 startActivity(browserIntent);
             }
         });
@@ -50,6 +52,14 @@ public class BigBoyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("yurl")));
+                startActivity(browserIntent);
+            }
+        });
+
+        facebookButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(json.optString("fburl")));
                 startActivity(browserIntent);
             }
         });
