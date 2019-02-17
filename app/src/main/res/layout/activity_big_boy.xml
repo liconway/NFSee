@@ -166,8 +166,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="18dp"
-            android:layout_marginEnd="135dp"
-            android:layout_marginRight="135dp"
+            android:layout_marginEnd="137dp"
+            android:layout_marginRight="137dp"
             android:background="@android:color/transparent"
             app:srcCompat="@mipmap/ic_launcher_foreground_yelp_icon" />
 
@@ -197,6 +197,22 @@
             android:layout_marginTop="18dp"
             android:background="@android:color/transparent"
             app:srcCompat="@mipmap/ic_launcher_foreground_facebook_icon" />
+
+        <Button
+            android:id="@+id/jobListing"
+            android:layout_width="395dp"
+            android:layout_height="72dp"
+            android:layout_below="@+id/yelp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:background="#ffffff"
+            android:fontFamily="@font/coolvetica"
+            android:text="Job Listings"
+            android:textSize="35dp"
+            android:textColor="#8d02b3" />
 
 
     </RelativeLayout>
