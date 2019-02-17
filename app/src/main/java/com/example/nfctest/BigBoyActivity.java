@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.util.Linkify;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -114,22 +115,31 @@ public class BigBoyActivity extends AppCompatActivity {
         return json;
     }
 
-    private void displayData(JSONObject data) {
-        TextView field = (TextView) findViewById(R.id.company_title);
+    public static String formatPhone(String number) {
+        if (number.length() != 10) return number;
+        char[] c = number.toCharArray();
+        return "(" + c[0] + c[1] + c[2] + ") " + c[3] + c[4] + c[5] + " - " + c[6] + c[7] + c[8] + c[9];
+    }
 
+    private void displayData(JSONObject data) {
+        TextView field = findViewById(R.id.company_title);
         field.setText(data.optString("title"));
 
         field = findViewById(R.id.address);
         field.setText(data.optString("address"));
+        Linkify.addLinks(field, Linkify.MAP_ADDRESSES);
 
         field = findViewById(R.id.phone);
-        field.setText(data.optString("phone"));
+        field.setText(formatPhone(data.optString("phone")));
+        Linkify.addLinks(field, Linkify.PHONE_NUMBERS);
 
         field = findViewById(R.id.url);
         field.setText(data.optString("url"));
+        Linkify.addLinks(field, Linkify.WEB_URLS);
 
         field = findViewById(R.id.description);
         field.setText(data.optString("description"));
+
 
         JSONArray photos = data.optJSONArray("photos");
         String[] urls = new String[photos.length()];
