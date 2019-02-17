@@ -6,22 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
+
     <RelativeLayout
-        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
-        tools:context=".MainActivity"
-        >
+        tools:context=".MainActivity">
 
 
         <TableLayout
             android:id="@+id/topActionBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content">
 
             <TableRow
                 android:id="@+id/singleRow"
@@ -29,32 +29,166 @@
                 android:layout_height="211dp"
                 android:gravity="center_horizontal">
 
-                <Button
-                    android:id="@+id/back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_margin="16dp"
-                    android:text="Button" />
-
                 <TextView
                     android:id="@+id/NFSee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/coolvetica"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/coolvetica"
                     android:text="NFSee"
-                    android:textColor="#000000"
+                    android:textColor="#555555"
                     android:textSize="40dp" />
 
                 <ImageView
                     android:id="@+id/logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="visible"
                     app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
+
+                <ImageButton
+                    android:id="@+id/favourite_button"
+                    android:layout_width="76dp"
+                    android:layout_height="77dp"
+                    android:layout_gravity="bottom||right"
+
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@mipmap/ic_launcher_foreground_favourite_star" />
 
             </TableRow>
         </TableLayout>
+
+        <TextView
+            android:id="@+id/company_title"
+            android:layout_width="232dp"
+            android:layout_height="47dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="123dp"
+            android:layout_marginEnd="163dp"
+            android:layout_marginRight="163dp"
+
+            android:fontFamily="@font/coolvetica"
+            android:text="Company_Title"
+            android:textColor="#000000"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_title"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="123dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_title"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="161dp"
+            android:layout_marginRight="161dp"
+            android:fontFamily="@font/coolvetica"
+            android:text="address"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_title"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="164dp"
+            android:layout_marginRight="164dp"
+            android:fontFamily="@font/coolvetica"
+            android:text="phone"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/url"
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/company_title"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="164dp"
+            android:layout_marginRight="164dp"
+            android:fontFamily="@font/coolvetica"
+            android:text="url"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="131dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topActionBar"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="144dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+
+            android:fontFamily="@font/coolvetica"
+            android:gravity="center"
+            android:text="McDonald’s (MCD) is a fast food, limited service restaurant with more than 35,000 restaurants in over 100 countries."
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Gallary"
+            android:layout_width="395dp"
+            android:layout_height="301dp"
+            android:layout_below="@+id/description"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:fontFamily="@font/coolvetica"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/hot_deal"
+            android:layout_width="386dp"
+            android:layout_height="182dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="695dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:fontFamily="@font/coolvetica"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:text="Hot Dealz" />
 
 
     </RelativeLayout>
