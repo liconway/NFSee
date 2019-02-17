@@ -165,8 +165,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="18dp"
-            android:layout_marginEnd="29dp"
-            android:layout_marginRight="29dp"
+            android:layout_marginEnd="171dp"
+            android:layout_marginRight="171dp"
             android:background="@android:color/transparent"
             app:srcCompat="@mipmap/ic_launcher_foreground_yelp_icon" />
 
