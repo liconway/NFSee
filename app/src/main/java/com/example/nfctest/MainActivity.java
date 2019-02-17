@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onNewIntent(intent);
 
         if(intent.hasExtra(NfcAdapter.EXTRA_TAG)){
-            Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Nfc Intent!", Toast.LENGTH_SHORT).show();
             if(tglReadWrite.isChecked()){
                 Parcelable[] parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 
