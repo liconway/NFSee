@@ -1,5 +1,5 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 const PORT = 8192;
 
 const MongoClient = require('mongodb').MongoClient;
@@ -23,7 +23,7 @@ app.get('/data', (req, res) => {
         if(err) throw err;
         else console.log("Connected to MongoDB");
     
-        var dbo = db.db("nfsee");
+        var dbo = db.db(loginData.db);
         var query = { uuid: uuid };
         dbo.collection('locations').find(query).toArray((err, result) => {
             if(err) {
@@ -44,9 +44,26 @@ app.get('/data', (req, res) => {
 
             var info = result[0];
             delete info['_id'];
-            
-            res.status(200).json(info);
-            db.close();
+            info.alerts = {};
+
+            dbo.collection('alerts').find({}).toArray((err, nresult) => {
+                for(var i = 0; i < nresult.length; i++) {
+                    var r = nresult[i];
+                    if(info.latitude > (r.latitude - r.radius) && info.latitude < (r.latitude + r.radius)
+                    && info.longitude > (r.longitude - r.radius) && info.longitude < (r.longitude + r.radius)) {
+                        delete r['_id'];
+                        info.alerts[r.uuid] = r;
+                        delete info.alerts[r.uuid].uuid;
+
+                        res.status(200).json(info);
+                        db.close();
+                        return;
+                    }
+                }
+
+                res.status(200).json(info);
+                db.close();
+            })
         })
     })
 })
