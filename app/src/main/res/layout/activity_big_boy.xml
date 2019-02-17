@@ -140,8 +140,8 @@
             android:id="@+id/viewPager_id"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_below="@+id/description"
-            android:layout_marginTop="20dp"
+            android:layout_below="@+id/thin_banner2"
+            android:layout_marginTop="15dp"
             android:paddingBottom="20dp" />
 
         <ImageView
@@ -157,6 +157,18 @@
             android:src="@drawable/banner" />
 
 
+        <ImageView
+            android:id="@+id/thin_banner2"
+            android:layout_width="347dp"
+            android:layout_height="8dp"
+            android:layout_below="@+id/description"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/banner" />
+
         <ImageButton
 
             android:id="@+id/yelp"
@@ -166,8 +178,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="18dp"
-            android:layout_marginEnd="133dp"
-            android:layout_marginRight="133dp"
+            android:layout_marginEnd="125dp"
+            android:layout_marginRight="125dp"
             android:background="@android:color/transparent"
             app:srcCompat="@mipmap/ic_launcher_foreground_yelp_icon" />
 
