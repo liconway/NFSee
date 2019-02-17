@@ -18,10 +18,19 @@
         tools:context=".MainActivity">
 
 
+        <ImageView
+            android:id="@+id/banner"
+            android:layout_width="379dp"
+            android:layout_height="110dp"
+            android:src="@drawable/banner" />
+
         <TableLayout
+            xmlns:android = "http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/topActionBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
 
             <TableRow
                 android:id="@+id/singleRow"
@@ -34,24 +43,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
                     android:fontFamily="@font/coolvetica"
                     android:text="NFSee"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:textSize="40dp" />
-
-                <ImageView
-                    android:id="@+id/logo"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_weight="0.7"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
+                    android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        app:srcCompat="@mipmap/ic_launcher_foreground_logo_white" />
+                    </LinearLayout>
                 <ImageButton
                     android:id="@+id/favourite_button"
                     android:layout_width="76dp"
                     android:layout_height="77dp"
-                    android:layout_gravity="bottom||right"
-
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="top|right"
+                    android:layout_constraintLeft_toRightOf="true"
                     android:background="@android:color/transparent"
                     app:srcCompat="@mipmap/ic_launcher_foreground_favourite_star" />
 
@@ -75,7 +95,7 @@
             android:textSize="30dp" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/favourite_star"
             android:layout_width="131dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/company_title"
@@ -105,12 +125,12 @@
             android:id="@+id/phone"
             android:layout_width="231dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_title"
+            android:layout_below="@+id/address"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="164dp"
-            android:layout_marginRight="164dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="204dp"
+            android:layout_marginRight="204dp"
             android:fontFamily="@font/coolvetica"
             android:text="phone"
             android:textColor="#000000"
@@ -120,19 +140,19 @@
             android:id="@+id/url"
             android:layout_width="231dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/company_title"
+            android:layout_below="@+id/phone"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="164dp"
-            android:layout_marginRight="164dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="179dp"
+            android:layout_marginRight="179dp"
             android:fontFamily="@font/coolvetica"
             android:text="url"
             android:textColor="#000000"
             android:textSize="15dp" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/company_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -161,21 +181,6 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/Gallary"
-            android:layout_width="395dp"
-            android:layout_height="301dp"
-            android:layout_below="@+id/description"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:fontFamily="@font/coolvetica"
-            android:gravity="center"
-            android:textColor="#000000"
-            android:text="TextView" />
-
-        <TextView
             android:id="@+id/hot_deal"
             android:layout_width="386dp"
             android:layout_height="182dp"
@@ -189,6 +194,29 @@
             android:gravity="center"
             android:textColor="#000000"
             android:text="Hot Dealz" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="wrap_content"
+            android:layout_height="208dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="374dp">
+            />
+
+            <ImageView
+                android:id="@+id/text_image_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/ic_launcher_foreground_icon" />
+
+            <TextView
+                android:id="@+id/test_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yeetus" />
+
+
+        </android.support.v4.view.ViewPager>
 
 
     </RelativeLayout>
