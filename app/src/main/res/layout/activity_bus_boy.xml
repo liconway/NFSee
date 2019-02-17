@@ -278,7 +278,7 @@
             android:layout_below="@+id/busTable"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="200dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:background="#ffffff"
