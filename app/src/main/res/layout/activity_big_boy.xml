@@ -158,7 +158,7 @@
 
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/yelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thin_banner"
@@ -171,7 +171,7 @@
             app:srcCompat="@mipmap/ic_launcher_foreground_yelp_icon" />
 
         <ImageButton
-            android:id="@+id/tripadvisort_icon"
+            android:id="@+id/tripAdvisor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thin_banner"
